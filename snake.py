@@ -54,13 +54,13 @@ score = 0
 
 # Game Over
 def game_over():
-    my_font = pygame.font.SysFont('consolas', 90)
+    my_font = pygame.font.SysFont('times new roman', 90)
     game_over_surface = my_font.render('GAME OVER', True, red)
     game_over_rect = game_over_surface.get_rect()
     game_over_rect.midtop = (frame_size_x/2, frame_size_y/4)
     game_window.fill(black)
     game_window.blit(game_over_surface, game_over_rect)
-    show_score(0, red, 'times', 20)
+    show_score(0, red, 'consolas', 20)
     pygame.display.flip()
     time.sleep(3)
     pygame.quit()
