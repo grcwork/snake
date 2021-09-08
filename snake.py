@@ -8,7 +8,9 @@ frame_size_x = 720
 frame_size_y = 480
 
 #Difficulty
-difficulty = 25
+difficulty = int(input("Ingresa nivel de dificultad (1:Fácil, 2:Medio, 3:Difícil): "))
+difficulty = (difficulty**2)*10
+
 
 # Checks for errors encountered
 check_errors = pygame.init()
