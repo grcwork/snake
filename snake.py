@@ -8,7 +8,10 @@ frame_size_x = 720
 frame_size_y = 480
 
 #Difficulty
-difficulty = int(input("Ingresa nivel de dificultad (1:Fácil, 2:Medio, 3:Difícil): "))
+difficulty = input("Ingresa nivel de dificultad (1:Fácil, 2:Medio, 3:Difícil): ")
+assert difficulty.isdigit(), "El valor ingresado debe ser un número entre 1 y 3"
+difficulty = int(difficulty)
+assert difficulty in [1,2,3,4], "El valor ingresado debe ser un número entre 1 y 3"
 difficulty = (difficulty**2)*10
 
 
