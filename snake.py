@@ -12,8 +12,8 @@ difficulty = input("Ingresa nivel de dificultad (1:Fácil, 2:Medio, 3:Difícil):
 assert difficulty.isdigit(), "El valor ingresado debe ser un número entre 1 y 3"
 difficulty = int(difficulty)
 assert difficulty in [1,2,3,4], "El valor ingresado debe ser un número entre 1 y 3"
-#difficulty = (difficulty**2)*10
-difficulty = 200
+difficulty = (difficulty**2)*10
+#difficulty = 200
 
 # Checks for errors encountered
 check_errors = pygame.init()
@@ -54,18 +54,35 @@ score = 0
 
 # Game Over
 def game_over():
-    my_font = pygame.font.SysFont('times new roman', 90)
-    game_over_surface = my_font.render('GAME OVER', True, red)
+    global snake_pos, snake_body, food_pos, food_spawn, direction, change_to, score
+
+    my_font = pygame.font.SysFont('times new roman', 30)
+    game_over_surface = my_font.render('GAME OVER (c: continuar, q: quitar)', True, red)
     game_over_rect = game_over_surface.get_rect()
     game_over_rect.midtop = (frame_size_x/2, frame_size_y/4)
     game_window.fill(black)
     game_window.blit(game_over_surface, game_over_rect)
     show_score(0, red, 'consolas', 20)
     pygame.display.flip()
-    time.sleep(3)
-    pygame.quit()
-    sys.exit()
     
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN and event.key == ord('q'):
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN and event.key == ord('c'):
+                # Game variables
+                snake_pos = [100, 50]
+                snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
+
+                food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
+                food_spawn = True
+
+                direction = 'RIGHT'
+                change_to = direction
+
+                score = 0
+                return
     
 # Score
 def show_score(choice, color, font, size):
